@@ -1,0 +1,13 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      API_KEYS: ${API_KEYS:-change-me}
+      WORKERS: ${WORKERS:-1}
+      BEAT_CHECKPOINT: ${BEAT_CHECKPOINT:-final0}
+      CACHE_DIR: /tmp/cache
+    read_only: true
+    tmpfs:
+      - /tmp

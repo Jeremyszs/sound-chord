@@ -1,0 +1,21 @@
+{
+  "bpm": 118,
+  "beats_per_bar": 4,
+  "key": "C major",
+  "progression": [
+    "N.C. (None) x1",
+    "C (I) x1",
+    "G (V) x1",
+    "Am (vi) x1",
+    "F (IV) x1",
+    "C (I) x1",
+    "G (V) x1",
+    "Am (vi) x1",
+    "F (IV) x1",
+    "C (I) x1",
+    "G (V) x1",
+    "Am (vi) x1",
+    "F (IV) x1",
+    "N.C. (None) x1"
+  ]
+}

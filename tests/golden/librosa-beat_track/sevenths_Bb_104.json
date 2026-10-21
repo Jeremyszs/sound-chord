@@ -1,0 +1,20 @@
+{
+  "bpm": 103,
+  "beats_per_bar": 4,
+  "key": "Bb major",
+  "progression": [
+    "N.C. (None) x1",
+    "Bbmaj7 (Imaj7) x1",
+    "Gm7 (vi7) x1",
+    "Cm7 (ii7) x1",
+    "F7 (V7) x1",
+    "Bbmaj7 (Imaj7) x1",
+    "Gm7 (vi7) x1",
+    "Cm7 (ii7) x1",
+    "F7 (V7) x1",
+    "Bbmaj7 (Imaj7) x1",
+    "Gm7 (vi7) x1",
+    "Cm7 (ii7) x1",
+    "F7 (V7) x2"
+  ]
+}

@@ -1,0 +1,263 @@
+{
+  "schema_version": "1.0",
+  "engine": {
+    "version": "0.1.0",
+    "chord_model": "btc-full",
+    "beat_model": "librosa-beat_track",
+    "key_model": "kk-profile+chord-vote"
+  },
+  "file": {
+    "sha256": "7b9bb2d2809a9a5311ab4a5f4a0621e3aba37ae7fb6b03e8d44324d992e29711",
+    "duration": 11.0,
+    "format": "wav",
+    "codec": "pcm_s16le"
+  },
+  "tempo": {
+    "bpm": 120.2,
+    "confidence": 0.977,
+    "bpm_alternatives": [
+      60.1,
+      240.4
+    ],
+    "beats_per_bar": 4,
+    "time_signature": "4/4"
+  },
+  "key": {
+    "tonic": "C",
+    "mode": "major",
+    "name": "C major",
+    "label": "C:maj",
+    "confidence": 0.93,
+    "runner_up": {
+      "tonic": "A",
+      "mode": "minor",
+      "name": "A minor",
+      "label": "A:min"
+    }
+  },
+  "chord_vocabulary": "full",
+  "chords": [
+    {
+      "start": 0.0,
+      "end": 1.02,
+      "label": "N",
+      "name": "N.C.",
+      "bar": 0,
+      "beat": 0,
+      "confidence": 0.935
+    },
+    {
+      "start": 1.02,
+      "end": 3.02,
+      "label": "C:maj",
+      "name": "C",
+      "roman": "I",
+      "bar": 1,
+      "beat": 1,
+      "confidence": 0.912
+    },
+    {
+      "start": 3.02,
+      "end": 5.02,
+      "label": "G:maj",
+      "name": "G",
+      "roman": "V",
+      "bar": 2,
+      "beat": 1,
+      "confidence": 0.946
+    },
+    {
+      "start": 5.02,
+      "end": 7.01,
+      "label": "A:min",
+      "name": "Am",
+      "roman": "vi",
+      "bar": 3,
+      "beat": 1,
+      "confidence": 0.901
+    },
+    {
+      "start": 7.01,
+      "end": 9.01,
+      "label": "F:maj",
+      "name": "F",
+      "roman": "IV",
+      "bar": 4,
+      "beat": 1,
+      "confidence": 0.898
+    },
+    {
+      "start": 9.01,
+      "end": 11.0,
+      "label": "N",
+      "name": "N.C.",
+      "bar": 5,
+      "beat": 1,
+      "confidence": 0.917
+    }
+  ],
+  "progression": [
+    {
+      "bar": 0,
+      "bars": 1,
+      "label": "N",
+      "name": "N.C."
+    },
+    {
+      "bar": 1,
+      "bars": 1,
+      "label": "C:maj",
+      "name": "C",
+      "roman": "I"
+    },
+    {
+      "bar": 2,
+      "bars": 1,
+      "label": "G:maj",
+      "name": "G",
+      "roman": "V"
+    },
+    {
+      "bar": 3,
+      "bars": 1,
+      "label": "A:min",
+      "name": "Am",
+      "roman": "vi"
+    },
+    {
+      "bar": 4,
+      "bars": 1,
+      "label": "F:maj",
+      "name": "F",
+      "roman": "IV"
+    },
+    {
+      "bar": 5,
+      "bars": 1,
+      "label": "N",
+      "name": "N.C."
+    }
+  ],
+  "beats": [
+    {
+      "time": 1.02,
+      "bar": 1,
+      "beat": 1
+    },
+    {
+      "time": 1.51,
+      "bar": 1,
+      "beat": 2
+    },
+    {
+      "time": 2.02,
+      "bar": 1,
+      "beat": 3
+    },
+    {
+      "time": 2.51,
+      "bar": 1,
+      "beat": 4
+    },
+    {
+      "time": 3.02,
+      "bar": 2,
+      "beat": 1
+    },
+    {
+      "time": 3.53,
+      "bar": 2,
+      "beat": 2
+    },
+    {
+      "time": 4.02,
+      "bar": 2,
+      "beat": 3
+    },
+    {
+      "time": 4.53,
+      "bar": 2,
+      "beat": 4
+    },
+    {
+      "time": 5.02,
+      "bar": 3,
+      "beat": 1
+    },
+    {
+      "time": 5.53,
+      "bar": 3,
+      "beat": 2
+    },
+    {
+      "time": 6.01,
+      "bar": 3,
+      "beat": 3
+    },
+    {
+      "time": 6.52,
+      "bar": 3,
+      "beat": 4
+    },
+    {
+      "time": 7.01,
+      "bar": 4,
+      "beat": 1
+    },
+    {
+      "time": 7.52,
+      "bar": 4,
+      "beat": 2
+    },
+    {
+      "time": 8.03,
+      "bar": 4,
+      "beat": 3
+    },
+    {
+      "time": 8.52,
+      "bar": 4,
+      "beat": 4
+    },
+    {
+      "time": 9.01,
+      "bar": 5,
+      "beat": 1
+    }
+  ],
+  "bars": [
+    {
+      "bar": 0,
+      "start": 0.0,
+      "end": 1.02
+    },
+    {
+      "bar": 1,
+      "start": 1.02,
+      "end": 3.02
+    },
+    {
+      "bar": 2,
+      "start": 3.02,
+      "end": 5.02
+    },
+    {
+      "bar": 3,
+      "start": 5.02,
+      "end": 7.01
+    },
+    {
+      "bar": 4,
+      "start": 7.01,
+      "end": 9.01
+    },
+    {
+      "bar": 5,
+      "start": 9.01,
+      "end": 11.0
+    }
+  ],
+  "warnings": [
+    "beat_tracker_fallback"
+  ]
+}

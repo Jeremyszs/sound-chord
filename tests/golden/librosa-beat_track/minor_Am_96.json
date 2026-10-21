@@ -1,0 +1,21 @@
+{
+  "bpm": 96,
+  "beats_per_bar": 4,
+  "key": "A minor",
+  "progression": [
+    "N.C. (None) x1",
+    "Am (i) x1",
+    "F (bVI) x1",
+    "C (bIII) x1",
+    "E (V) x1",
+    "Am (i) x1",
+    "F (bVI) x1",
+    "C (bIII) x1",
+    "E (V) x1",
+    "Am (i) x1",
+    "F (bVI) x1",
+    "C (bIII) x1",
+    "E (V) x1",
+    "N.C. (None) x1"
+  ]
+}

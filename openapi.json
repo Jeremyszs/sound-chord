@@ -1,0 +1,1139 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Chord Analyzer API",
+    "description": "Upload an audio file and get its tempo, key and beat-aligned chord progression as JSON. Send the API key in the X-API-Key header.",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/v1/analyze": {
+      "post": {
+        "summary": "Analyze an audio file and wait for the result",
+        "operationId": "analyze_v1_analyze_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_analyze_v1_analyze_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalysisResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {},
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemModel"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {},
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemModel"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "413": {
+            "content": {
+              "application/problem+json": {},
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemModel"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {},
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemModel"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {},
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemModel"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {},
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemModel"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/v1/jobs": {
+      "post": {
+        "summary": "Upload an audio file and return immediately; poll the job for the result",
+        "operationId": "create_job_v1_jobs_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_create_job_v1_jobs_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobAccepted"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {},
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemModel"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {},
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemModel"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "413": {
+            "content": {
+              "application/problem+json": {},
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemModel"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {},
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemModel"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {},
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemModel"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {},
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemModel"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/v1/jobs/{job_id}": {
+      "get": {
+        "summary": "Poll an async job",
+        "operationId": "get_job_v1_jobs__job_id__get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          },
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStatus"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {},
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {},
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemModel"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "summary": "Liveness and loaded model versions",
+        "operationId": "health_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AnalysisResult": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "1.0"
+          },
+          "engine": {
+            "$ref": "#/components/schemas/EngineInfo"
+          },
+          "file": {
+            "$ref": "#/components/schemas/FileInfo"
+          },
+          "tempo": {
+            "$ref": "#/components/schemas/TempoInfo"
+          },
+          "key": {
+            "$ref": "#/components/schemas/KeyResultInfo"
+          },
+          "chord_vocabulary": {
+            "type": "string",
+            "enum": [
+              "majmin",
+              "full"
+            ],
+            "title": "Chord Vocabulary"
+          },
+          "chords": {
+            "items": {
+              "$ref": "#/components/schemas/ChordSegment"
+            },
+            "type": "array",
+            "title": "Chords"
+          },
+          "progression": {
+            "items": {
+              "$ref": "#/components/schemas/ProgressionEntry"
+            },
+            "type": "array",
+            "title": "Progression"
+          },
+          "beats": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Beat"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Beats"
+          },
+          "bars": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Bar"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bars"
+          },
+          "tempo_curve": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/TempoCurvePoint"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tempo Curve"
+          },
+          "chord_probabilities": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ChordProbabilities"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings",
+            "description": "Codes such as low_tempo_confidence, ambiguous_key, mostly_no_chord, clipped_audio, beat_tracker_fallback"
+          }
+        },
+        "type": "object",
+        "required": [
+          "engine",
+          "file",
+          "tempo",
+          "key",
+          "chord_vocabulary",
+          "chords",
+          "progression"
+        ],
+        "title": "AnalysisResult"
+      },
+      "Bar": {
+        "properties": {
+          "bar": {
+            "type": "integer",
+            "title": "Bar"
+          },
+          "start": {
+            "type": "number",
+            "title": "Start"
+          },
+          "end": {
+            "type": "number",
+            "title": "End"
+          }
+        },
+        "type": "object",
+        "required": [
+          "bar",
+          "start",
+          "end"
+        ],
+        "title": "Bar"
+      },
+      "Beat": {
+        "properties": {
+          "time": {
+            "type": "number",
+            "title": "Time"
+          },
+          "bar": {
+            "type": "integer",
+            "title": "Bar"
+          },
+          "beat": {
+            "type": "integer",
+            "title": "Beat"
+          }
+        },
+        "type": "object",
+        "required": [
+          "time",
+          "bar",
+          "beat"
+        ],
+        "title": "Beat"
+      },
+      "Body_analyze_v1_analyze_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File",
+            "description": "The audio file (mp3, wav, flac, m4a, ogg)"
+          },
+          "chord_vocabulary": {
+            "type": "string",
+            "enum": [
+              "majmin",
+              "full"
+            ],
+            "title": "Chord Vocabulary",
+            "description": "'majmin' (25 labels) or 'full' (170)",
+            "default": "full"
+          },
+          "include": {
+            "type": "string",
+            "title": "Include",
+            "description": "Comma list of optional fields: beats, tempo_curve, bars, chord_probabilities",
+            "default": "beats,bars"
+          },
+          "notation": {
+            "type": "string",
+            "enum": [
+              "name",
+              "roman",
+              "both"
+            ],
+            "title": "Notation",
+            "description": "Chord display: name, roman or both",
+            "default": "both"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_analyze_v1_analyze_post"
+      },
+      "Body_create_job_v1_jobs_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File",
+            "description": "The audio file (mp3, wav, flac, m4a, ogg)"
+          },
+          "chord_vocabulary": {
+            "type": "string",
+            "enum": [
+              "majmin",
+              "full"
+            ],
+            "title": "Chord Vocabulary",
+            "description": "'majmin' (25 labels) or 'full' (170)",
+            "default": "full"
+          },
+          "include": {
+            "type": "string",
+            "title": "Include",
+            "description": "Comma list of optional fields: beats, tempo_curve, bars, chord_probabilities",
+            "default": "beats,bars"
+          },
+          "notation": {
+            "type": "string",
+            "enum": [
+              "name",
+              "roman",
+              "both"
+            ],
+            "title": "Notation",
+            "description": "Chord display: name, roman or both",
+            "default": "both"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_create_job_v1_jobs_post"
+      },
+      "ChordProbabilities": {
+        "properties": {
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Labels"
+          },
+          "frame_period": {
+            "type": "number",
+            "title": "Frame Period",
+            "description": "Seconds between frames; frame i is centred on i * frame_period"
+          },
+          "frames": {
+            "items": {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            "type": "array",
+            "title": "Frames"
+          }
+        },
+        "type": "object",
+        "required": [
+          "labels",
+          "frame_period",
+          "frames"
+        ],
+        "title": "ChordProbabilities"
+      },
+      "ChordSegment": {
+        "properties": {
+          "start": {
+            "type": "number",
+            "title": "Start"
+          },
+          "end": {
+            "type": "number",
+            "title": "End"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label",
+            "description": "Harte syntax, root:quality, or N (no chord) / X (unknown)"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name",
+            "description": "Display name, e.g. 'F#m7'"
+          },
+          "roman": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Roman",
+            "description": "Roman numeral relative to the key, e.g. 'ii7'"
+          },
+          "bar": {
+            "type": "integer",
+            "title": "Bar",
+            "description": "1-based from the first downbeat; 0 = pickup before it"
+          },
+          "beat": {
+            "type": "integer",
+            "title": "Beat",
+            "description": "1-based beat within the bar"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          }
+        },
+        "type": "object",
+        "required": [
+          "start",
+          "end",
+          "label",
+          "bar",
+          "beat",
+          "confidence"
+        ],
+        "title": "ChordSegment"
+      },
+      "EngineInfo": {
+        "properties": {
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "chord_model": {
+            "type": "string",
+            "title": "Chord Model"
+          },
+          "beat_model": {
+            "type": "string",
+            "title": "Beat Model"
+          },
+          "key_model": {
+            "type": "string",
+            "title": "Key Model"
+          }
+        },
+        "type": "object",
+        "required": [
+          "version",
+          "chord_model",
+          "beat_model",
+          "key_model"
+        ],
+        "title": "EngineInfo"
+      },
+      "FileInfo": {
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "title": "Sha256"
+          },
+          "duration": {
+            "type": "number",
+            "title": "Duration",
+            "description": "Seconds"
+          },
+          "format": {
+            "type": "string",
+            "title": "Format"
+          },
+          "codec": {
+            "type": "string",
+            "title": "Codec"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sha256",
+          "duration",
+          "format",
+          "codec"
+        ],
+        "title": "FileInfo"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "loading",
+              "error"
+            ],
+            "title": "Status"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "auth": {
+            "type": "string",
+            "enum": [
+              "enabled",
+              "disabled"
+            ],
+            "title": "Auth"
+          },
+          "engine": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Engine"
+          },
+          "beat_tracker_fallback": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Beat Tracker Fallback"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "version",
+          "auth"
+        ],
+        "title": "HealthResponse"
+      },
+      "JobAccepted": {
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "title": "Job Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "job_id",
+          "status"
+        ],
+        "title": "JobAccepted"
+      },
+      "JobStatus": {
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "title": "Job Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "succeeded",
+              "failed"
+            ],
+            "title": "Status"
+          },
+          "result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnalysisResult"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "error": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ProblemModel"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "job_id",
+          "status"
+        ],
+        "title": "JobStatus"
+      },
+      "KeyInfo": {
+        "properties": {
+          "tonic": {
+            "type": "string",
+            "title": "Tonic",
+            "description": "Spelled tonic, e.g. 'F#' or 'Bb'"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "major",
+              "minor"
+            ],
+            "title": "Mode"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "e.g. 'A minor'"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label",
+            "description": "Harte-style key label, e.g. 'A:min'"
+          }
+        },
+        "type": "object",
+        "required": [
+          "tonic",
+          "mode",
+          "name",
+          "label"
+        ],
+        "title": "KeyInfo"
+      },
+      "KeyResultInfo": {
+        "properties": {
+          "tonic": {
+            "type": "string",
+            "title": "Tonic",
+            "description": "Spelled tonic, e.g. 'F#' or 'Bb'"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "major",
+              "minor"
+            ],
+            "title": "Mode"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "e.g. 'A minor'"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label",
+            "description": "Harte-style key label, e.g. 'A:min'"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "runner_up": {
+            "$ref": "#/components/schemas/KeyInfo"
+          }
+        },
+        "type": "object",
+        "required": [
+          "tonic",
+          "mode",
+          "name",
+          "label",
+          "confidence",
+          "runner_up"
+        ],
+        "title": "KeyResultInfo"
+      },
+      "ProblemModel": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "status": {
+            "type": "integer",
+            "title": "Status"
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "title",
+          "status"
+        ],
+        "title": "ProblemModel"
+      },
+      "ProgressionEntry": {
+        "properties": {
+          "bar": {
+            "type": "integer",
+            "title": "Bar",
+            "description": "First bar of this entry"
+          },
+          "bars": {
+            "type": "integer",
+            "title": "Bars",
+            "description": "Number of bars the chord is held (repeats collapsed)"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "roman": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Roman"
+          }
+        },
+        "type": "object",
+        "required": [
+          "bar",
+          "bars",
+          "label"
+        ],
+        "title": "ProgressionEntry"
+      },
+      "TempoCurvePoint": {
+        "properties": {
+          "bar": {
+            "type": "integer",
+            "title": "Bar"
+          },
+          "start": {
+            "type": "number",
+            "title": "Start"
+          },
+          "bpm": {
+            "type": "number",
+            "title": "Bpm"
+          }
+        },
+        "type": "object",
+        "required": [
+          "bar",
+          "start",
+          "bpm"
+        ],
+        "title": "TempoCurvePoint"
+      },
+      "TempoInfo": {
+        "properties": {
+          "bpm": {
+            "type": "number",
+            "title": "Bpm"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "bpm_alternatives": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Bpm Alternatives",
+            "description": "Half and double tempo"
+          },
+          "beats_per_bar": {
+            "type": "integer",
+            "title": "Beats Per Bar"
+          },
+          "time_signature": {
+            "type": "string",
+            "title": "Time Signature"
+          }
+        },
+        "type": "object",
+        "required": [
+          "bpm",
+          "confidence",
+          "bpm_alternatives",
+          "beats_per_bar",
+          "time_signature"
+        ],
+        "title": "TempoInfo"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

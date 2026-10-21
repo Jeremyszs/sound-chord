@@ -83,8 +83,21 @@ class JobStatus(BaseModel):
     error: ProblemModel | None = None
 
 
+# Explicit descriptions: Python's own status phrases differ between versions
+# ("Request Entity Too Large" in 3.12, "Content Too Large" in 3.13), which would
+# make the committed openapi.json depend on the interpreter.
+ERROR_DESCRIPTIONS = {
+    400: "Missing file or invalid option value",
+    401: "Missing or invalid API key",
+    404: "Job not found",
+    413: "File too large",
+    415: "Unsupported audio format",
+    422: "Audio duration out of range",
+    503: "Models still loading or server busy",
+}
 ERROR_RESPONSES = {
-    s: {"model": ProblemModel, "content": {"application/problem+json": {}}}
+    s: {"model": ProblemModel, "description": ERROR_DESCRIPTIONS[s],
+        "content": {"application/problem+json": {}}}
     for s in (400, 401, 413, 415, 422, 503)
 }
 
@@ -320,7 +333,8 @@ def create_app(settings: Settings | None = None, engine: Engine | None = None) -
                             headers={"Location": f"/v1/jobs/{job.id}"})
 
     @app.get("/v1/jobs/{job_id}", response_model=JobStatus, response_model_exclude_none=True,
-             responses={404: ERROR_RESPONSES[400], 401: ERROR_RESPONSES[401]},
+             responses={404: {**ERROR_RESPONSES[400], "description": ERROR_DESCRIPTIONS[404]},
+                        401: ERROR_RESPONSES[401]},
              summary="Poll an async job")
     async def get_job(request: Request, job_id: str, x_api_key: KeyHeader = None):
         check_key(x_api_key)

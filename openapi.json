@@ -50,6 +50,7 @@
             }
           },
           "400": {
+            "description": "Missing file or invalid option value",
             "content": {
               "application/problem+json": {},
               "application/json": {
@@ -57,10 +58,10 @@
                   "$ref": "#/components/schemas/ProblemModel"
                 }
               }
-            },
-            "description": "Bad Request"
+            }
           },
           "401": {
+            "description": "Missing or invalid API key",
             "content": {
               "application/problem+json": {},
               "application/json": {
@@ -68,10 +69,10 @@
                   "$ref": "#/components/schemas/ProblemModel"
                 }
               }
-            },
-            "description": "Unauthorized"
+            }
           },
           "413": {
+            "description": "File too large",
             "content": {
               "application/problem+json": {},
               "application/json": {
@@ -79,10 +80,10 @@
                   "$ref": "#/components/schemas/ProblemModel"
                 }
               }
-            },
-            "description": "Content Too Large"
+            }
           },
           "415": {
+            "description": "Unsupported audio format",
             "content": {
               "application/problem+json": {},
               "application/json": {
@@ -90,10 +91,10 @@
                   "$ref": "#/components/schemas/ProblemModel"
                 }
               }
-            },
-            "description": "Unsupported Media Type"
+            }
           },
           "422": {
+            "description": "Audio duration out of range",
             "content": {
               "application/problem+json": {},
               "application/json": {
@@ -101,10 +102,10 @@
                   "$ref": "#/components/schemas/ProblemModel"
                 }
               }
-            },
-            "description": "Unprocessable Content"
+            }
           },
           "503": {
+            "description": "Models still loading or server busy",
             "content": {
               "application/problem+json": {},
               "application/json": {
@@ -112,8 +113,7 @@
                   "$ref": "#/components/schemas/ProblemModel"
                 }
               }
-            },
-            "description": "Service Unavailable"
+            }
           }
         }
       }
@@ -162,6 +162,7 @@
             }
           },
           "400": {
+            "description": "Missing file or invalid option value",
             "content": {
               "application/problem+json": {},
               "application/json": {
@@ -169,10 +170,10 @@
                   "$ref": "#/components/schemas/ProblemModel"
                 }
               }
-            },
-            "description": "Bad Request"
+            }
           },
           "401": {
+            "description": "Missing or invalid API key",
             "content": {
               "application/problem+json": {},
               "application/json": {
@@ -180,10 +181,10 @@
                   "$ref": "#/components/schemas/ProblemModel"
                 }
               }
-            },
-            "description": "Unauthorized"
+            }
           },
           "413": {
+            "description": "File too large",
             "content": {
               "application/problem+json": {},
               "application/json": {
@@ -191,10 +192,10 @@
                   "$ref": "#/components/schemas/ProblemModel"
                 }
               }
-            },
-            "description": "Content Too Large"
+            }
           },
           "415": {
+            "description": "Unsupported audio format",
             "content": {
               "application/problem+json": {},
               "application/json": {
@@ -202,10 +203,10 @@
                   "$ref": "#/components/schemas/ProblemModel"
                 }
               }
-            },
-            "description": "Unsupported Media Type"
+            }
           },
           "422": {
+            "description": "Audio duration out of range",
             "content": {
               "application/problem+json": {},
               "application/json": {
@@ -213,10 +214,10 @@
                   "$ref": "#/components/schemas/ProblemModel"
                 }
               }
-            },
-            "description": "Unprocessable Content"
+            }
           },
           "503": {
+            "description": "Models still loading or server busy",
             "content": {
               "application/problem+json": {},
               "application/json": {
@@ -224,8 +225,7 @@
                   "$ref": "#/components/schemas/ProblemModel"
                 }
               }
-            },
-            "description": "Service Unavailable"
+            }
           }
         }
       }
@@ -273,6 +273,7 @@
             }
           },
           "404": {
+            "description": "Job not found",
             "content": {
               "application/problem+json": {},
               "application/json": {
@@ -280,10 +281,10 @@
                   "$ref": "#/components/schemas/ProblemModel"
                 }
               }
-            },
-            "description": "Not Found"
+            }
           },
           "401": {
+            "description": "Missing or invalid API key",
             "content": {
               "application/problem+json": {},
               "application/json": {
@@ -291,8 +292,7 @@
                   "$ref": "#/components/schemas/ProblemModel"
                 }
               }
-            },
-            "description": "Unauthorized"
+            }
           },
           "422": {
             "description": "Validation Error",
